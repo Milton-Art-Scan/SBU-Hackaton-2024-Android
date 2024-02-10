@@ -1,8 +1,9 @@
 import { AppStackScreenProps } from "app/navigators";
 import { observer } from "mobx-react-lite";
-import React, { FC, useEffect } from "react";
+import React, { FC } from "react";
 import { AutoImage, Button, Screen, Text } from "app/components";
 import * as Speech from 'expo-speech';
+import { useFocusEffect } from "@react-navigation/native";
 
 interface DescriptionScreenProps extends AppStackScreenProps<"CameraScreen"> {}
  
@@ -13,11 +14,11 @@ export const DescriptionScreen: FC<DescriptionScreenProps> = observer(function D
         Speech.speak(`${route.params?.title} - by ${route.params?.author}. ${route.params?.description}`)
     }
 
-    useEffect(() => {
+    useFocusEffect(() => {
         return () => {
             Speech.stop()
         }
-    }, [])
+    })
 
     if (!route.params) {
         return (
