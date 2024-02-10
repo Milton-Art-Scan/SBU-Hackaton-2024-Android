@@ -20,6 +20,8 @@ import { useStores } from "../models"
 import { DemoNavigator, DemoTabParamList } from "./DemoNavigator"
 import { navigationRef, useBackButtonHandler } from "./navigationUtilities"
 import { colors } from "app/theme"
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
+import { Icon } from "app/components"
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -40,6 +42,7 @@ export type AppStackParamList = {
   Demo: NavigatorScreenParams<DemoTabParamList>
   // 🔥 Your screens go here
   // IGNITE_GENERATOR_ANCHOR_APP_STACK_PARAM_LIST
+  CameraScreen: undefined
 }
 
 /**
@@ -54,19 +57,20 @@ export type AppStackScreenProps<T extends keyof AppStackParamList> = NativeStack
 >
 
 // Documentation: https://reactnavigation.org/docs/stack-navigator/
-const Stack = createNativeStackNavigator<AppStackParamList>()
+const Tab = createBottomTabNavigator<AppStackParamList>()
 
-const AppStack = observer(function AppStack() {
+const App = observer(function AppStack() {
   const {
     authenticationStore: { isAuthenticated },
   } = useStores()
 
   return (
-    <Stack.Navigator
+    <Tab.Navigator
       screenOptions={{ headerShown: false, navigationBarColor: colors.background }}
-      initialRouteName={isAuthenticated ? "Welcome" : "Login"}
+      // initialRouteName={isAuthenticated ? "Welcome" : "Login"}
+      initialRouteName="Scan"
     >
-      {isAuthenticated ? (
+      {/* {isAuthenticated ? (
         <>
           <Stack.Screen name="Welcome" component={Screens.WelcomeScreen} />
 
@@ -76,11 +80,32 @@ const AppStack = observer(function AppStack() {
         <>
           <Stack.Screen name="Login" component={Screens.LoginScreen} />
         </>
-      )}
-
+      )} */}
+      <>
+        <Tab.Screen
+          name="Scan"
+          component={Screens.CameraScreen}
+          options={{
+            tabBarLabel: "Scan",
+            tabBarIcon: ({ focused }) => (
+              <Icon icon="camera" color={focused ? colors.tint : undefined} size={30} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Description"
+          component={Screens.DescriptionScreen} 
+          options={{
+            tabBarLabel: "Description",
+            tabBarIcon: ({ focused }) => (
+              <Icon icon="description" color={focused ? colors.tint : undefined} size={30} />
+            ),
+          }}
+        />
+      </>
       {/** 🔥 Your screens go here */}
       {/* IGNITE_GENERATOR_ANCHOR_APP_STACK_SCREENS */}
-    </Stack.Navigator>
+    </Tab.Navigator>
   )
 })
 
@@ -98,7 +123,7 @@ export const AppNavigator = observer(function AppNavigator(props: NavigationProp
       theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
       {...props}
     >
-      <AppStack />
+      <App />
     </NavigationContainer>
   )
 })
