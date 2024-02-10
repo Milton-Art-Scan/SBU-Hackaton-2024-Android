@@ -1,7 +1,7 @@
 import { AppStackScreenProps } from "app/navigators";
 import { observer } from "mobx-react-lite";
 import React, { FC } from "react";
-import { AutoImage, Button, Screen, Text } from "app/components";
+import { AutoImage, Button, Icon, Screen, Text } from "app/components";
 import * as Speech from 'expo-speech';
 import { useFocusEffect } from "@react-navigation/native";
 
@@ -10,7 +10,10 @@ interface DescriptionScreenProps extends AppStackScreenProps<"CameraScreen"> {}
 export const DescriptionScreen: FC<DescriptionScreenProps> = observer(function DescriptionScreen(_props) {
     const { route, navigation } = _props
 
-    const speak = () => {
+    const speak = async () => {
+        if (await Speech.isSpeakingAsync()) {
+            return
+        }
         Speech.speak(`${route.params?.title} - by ${route.params?.author}. ${route.params?.description}`)
     }
 
@@ -44,8 +47,7 @@ export const DescriptionScreen: FC<DescriptionScreenProps> = observer(function D
                 maxWidth={300}
                 style={{ alignSelf: "center", marginVertical: 10 }}
             />
-
-            <Button title="Speak" onPress={speak} text="Read Description" style={{ width: "50%", alignSelf: "center", marginVertical: 10 }} />
+            <Icon icon="volumeUp" size={30} onPress={speak} style={{ alignSelf: "center" }} />
             <Text preset="default" style={{ textAlign: "center", marginBottom: 40 }}>
                 {route.params?.description}
             </Text>

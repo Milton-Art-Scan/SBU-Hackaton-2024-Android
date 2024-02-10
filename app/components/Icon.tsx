@@ -110,6 +110,9 @@ export const iconRegistry = {
   x: require("../../assets/icons/x.png"),
   camera: require("../../assets/icons/camera.png"),
   description: require("../../assets/icons/description.png"),
+  volumeUp: require("../../assets/icons/volume-up.png"),
+  pause: require("../../assets/icons/pause.png"),
+  stop: require("../../assets/icons/stop.png"),
 }
 
 const $imageStyleBase: ImageStyle = {
