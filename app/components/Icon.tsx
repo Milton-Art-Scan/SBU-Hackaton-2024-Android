@@ -113,6 +113,7 @@ export const iconRegistry = {
   volumeUp: require("../../assets/icons/volume-up.png"),
   pause: require("../../assets/icons/pause.png"),
   stop: require("../../assets/icons/stop.png"),
+  circle: require("../../assets/icons/circle.png"),
 }
 
 const $imageStyleBase: ImageStyle = {
