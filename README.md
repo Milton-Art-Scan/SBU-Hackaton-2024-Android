@@ -18,6 +18,8 @@ $ yarn install
 ## Usage
 Configure the base URL in DescriptionScreen.tsx with the appropriate environment variable for the backend.
 The backend server is found at [https://github.com/lai-kevin/SBU-Hackathon-2024-Server](https://github.com/lai-kevin/SBU-Hackathon-2024-Server)
+
+
 ![alt text](image.png)
 
 ## API
