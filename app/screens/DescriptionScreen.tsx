@@ -21,6 +21,7 @@ export const DescriptionScreen: FC<DescriptionScreenProps> = observer(function D
         if (route.params) {
             route.params.description = null;
         }
+
     }, [])
 
     useFocusEffect(() => {
@@ -30,7 +31,7 @@ export const DescriptionScreen: FC<DescriptionScreenProps> = observer(function D
     })
 
     // Default no picture taken render
-    if (!route.params.description) {
+    if (!route?.params?.description) {
         return (
             <Screen preset="fixed" style={{ justifyContent: "center", alignItems: "center", paddingHorizontal: 10 }}>
                 <Text preset="heading" style={{ textAlign: "center" }}>
