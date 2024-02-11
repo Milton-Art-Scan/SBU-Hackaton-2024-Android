@@ -18,6 +18,12 @@ Named after 17th century poet John Milton, Milton is an app that helps you learn
 To install this project, make sure you have android studio and yarn installed on your system. Clone the repository then install the dependencies using the following command in the root directory of this repository:
 ```bash
 $ yarn install
+$ npm install
+```
+
+Once all dependencies are installed, start the expo go project and use the expo go mobile app to scan the qr code to experience Milton.
+```bash
+$ yarn start
 ```
 
 ## Usage
