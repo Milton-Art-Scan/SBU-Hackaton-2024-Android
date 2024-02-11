@@ -5,6 +5,9 @@ import { Button, Icon, Screen, Text } from "app/components"
 import { Camera, CameraType } from "expo-camera"
 import { TouchableOpacity, View } from "react-native"
 import { useFocusEffect } from "@react-navigation/native"
+import { create } from "apisauce"
+import FormData from 'form-data';
+import { ImageManipulator } from 'react-native';
 
 interface CameraScreenProps extends AppStackScreenProps<"CameraScreen"> {}
 
@@ -17,7 +20,7 @@ export const CameraScreen: FC<CameraScreenProps> = observer(function CameraScree
   useFocusEffect(() => {
     setFocus(true)
     return () => {
-        setFocus(false)
+      setFocus(false)
     }
   })
 
@@ -31,40 +34,73 @@ export const CameraScreen: FC<CameraScreenProps> = observer(function CameraScree
       </Screen>
     )
   }
+  
+  const api = create({
+    baseURL: 'https://380e-130-245-220-227.ngrok-free.app',
+    timeout: 10000,
+  });
 
+  async function uploadImage(imageUri) {
+    const data = new FormData();
+    data.append('image', {
+      uri: imageUri,
+      type: 'image/png',
+      name: 'image.png',
+    });
+  
+    try {
+      console.log("hello")
+      const response = await api.post('/api/art/scan/', data, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      
+      if (response.ok) {
+        console.log("Success")
+        console.log(JSON.stringify(response.data));
+        return response.data;
+
+      } else { 
+        console.log("Failure")
+        return null;
+      }
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  }
+  
   return (
     <Screen preset="fixed">
-      {focus && <Camera ref={cameraRef} style={{ width: "100%", height: "100%"}} ratio="16:9" type={type}>
-        <View style={{ alignItems: "center", height: "100%", justifyContent: "flex-end"}}>
-          <Icon
-            icon="circle"
-            size={85}
-            style={{
+      {focus && (
+        <Camera ref={cameraRef} style={{ width: "100%", height: "100%" }} ratio="16:9" type={type}>
+          <View style={{ alignItems: "center", height: "100%", justifyContent: "flex-end" }}>
+            <Icon
+              icon="circle"
+              size={85}
+              style={{
                 marginBottom: 15,
-            }}
-            onPress={() => {
-                cameraRef.current?.takePictureAsync({ onPictureSaved: (photo) => {
+              }}
+              onPress={() => {
+                cameraRef.current?.takePictureAsync({
+                  onPictureSaved: async (photo) => {
                     console.log(photo)
+                    // Send the photo to the API
+                    let scanResult = await uploadImage(photo.uri);
                     navigation.navigate("Description", {
-                        title: "The Mona Lisa",
-                        image: photo.uri,
-                        author: "Leonardo Di Vinci",
-                        description: "Some painting"
+                      title: scanResult ? scanResult.result.title : "Oops!",
+                      image: photo.uri,
+                      author: scanResult ? scanResult.result.artist : "",
+                      description: scanResult ? scanResult.result.description : "I can't seem to find that art piece. Perhaps try again?",
                     })
-                    // fetch(, {
-                    //     method: "POST",
-                    //     headers: {
-                    //         "Content-Type": "application/json",
-                    //     },
-                    //     body: JSON.stringify({
-                    //         image: photo.uri,
-                    //     }),
-                    // })
-                }})
-            }} 
-          />
-        </View>
-      </Camera>}
+                  },
+                })
+              }}
+            />
+          </View>
+        </Camera>
+      )}
     </Screen>
   )
 })

@@ -86,7 +86,7 @@ const App = observer(function AppStack() {
           name="Scan"
           component={Screens.CameraScreen}
           options={{
-            tabBarLabel: "Scan",
+            tabBarLabel: "Milton Cam",
             tabBarIcon: ({ focused }) => (
               <Icon icon="camera" color={focused ? colors.tint : undefined} size={30} />
             ),
@@ -96,7 +96,7 @@ const App = observer(function AppStack() {
           name="Description"
           component={Screens.DescriptionScreen} 
           options={{
-            tabBarLabel: "Description",
+            tabBarLabel: "Art Info",
             tabBarIcon: ({ focused }) => (
               <Icon icon="description" color={focused ? colors.tint : undefined} size={30} />
             ),
@@ -106,7 +106,7 @@ const App = observer(function AppStack() {
           name="Milton"
           component={Screens.TutorialScreen}
           options={{
-            tabBarLabel: "Milton",
+            tabBarLabel: "Guide",
             tabBarIcon: ({ focused }) => (
               <Icon icon="question" color={focused ? colors.tint : undefined} size={25} />
             ),

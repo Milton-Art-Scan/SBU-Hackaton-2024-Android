@@ -14,23 +14,11 @@ interface TutorialScreenProps extends AppStackScreenProps<"CameraScreen"> {}
  
 export const TutorialScreen: FC<TutorialScreenProps> = observer(function TutorialScreen(_props) {
     return (
-        <Screen preset="scroll"  safeAreaEdges={["top"]} style={{ paddingVertical: 50, paddingHorizontal: 25 }}>
-            <Text preset="heading" style={{ textAlign: "center", fontSize: 45,paddingTop: 50 }}>
-                Milton
+        <Screen preset="scroll"  safeAreaEdges={["top"]} style={{ paddingVertical: 0, paddingHorizontal: 25 }}>
+            <Text preset="heading" style={{ textAlign: "center", fontSize: 45,paddingTop: 40 }}>
+                How to Use Milton
             </Text>
-
-            <Text preset="default" style={{ textAlign: "center", marginTop: 100 }}>
-                Named after 17th century poet John Milton, Milton is an app that helps you learn about art.
-                {"\n"}
-                Much of Miltons's work was written in completely in the dark, as he lost his sight in his 40s.
-                Yet in his blindness, his work grew more vivid and imaginative.
-                His magnum opus, Paradise Lost, is a testament to the power of art to transcend the physical world.
-                {"\n\n"}
-                Milton is designed to help you experience art in a new way, by providing audio descriptions of art pieces.
-                All you need to do is scan a piece of art, and Milton will provide you with information about the art and an audio description if desired.
-            </Text>
-            <Icon icon="down" size={30} style={{ alignSelf: "center", marginTop: 10, marginBottom: 50 }} />
-            <Text preset="heading" style={{ textAlign: "center" }}>
+            <Text preset="heading" style={{ textAlign: "center", marginTop: 30 }}>
                 Step 1. Scan
             </Text>
             <AutoImage
@@ -68,13 +56,26 @@ export const TutorialScreen: FC<TutorialScreenProps> = observer(function Tutoria
 
             <Button preset="default" text="Get Started" onPress={() => _props.navigation.navigate("Scan")}
                 style={{
-                    marginBottom: 200,
+                    marginBottom: 20,
                     width: "50%",
                     alignSelf: "center",
                 }}
             >
                 Get Started
             </Button>
+            <Text preset="heading" style={{ textAlign: "center", fontSize: 45, paddingTop: 40, paddingBottom: 20 }}>
+                Our Mission
+            </Text>
+            <Text preset="default" style={{ textAlign: "center", marginTop: 10}}>
+                Named after 17th century poet John Milton, Milton is an app that helps you learn about art.
+                {"\n"}
+                Much of Miltons's work was written in completely in the dark, as he lost his sight in his 40s.
+                Yet in his blindness, his work grew more vivid and imaginative.
+                His magnum opus, Paradise Lost, is a testament to the power of art to transcend the physical world.
+                {"\n\n"}
+                Milton is designed to help you experience art in a new way, by providing audio descriptions of art pieces.
+                All you need to do is scan a piece of art, and Milton will provide you with information about the art and an audio description if desired.
+            </Text>
         </Screen>
     )
 })
