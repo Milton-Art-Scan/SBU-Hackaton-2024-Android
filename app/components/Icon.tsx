@@ -114,6 +114,8 @@ export const iconRegistry = {
   pause: require("../../assets/icons/pause.png"),
   stop: require("../../assets/icons/stop.png"),
   circle: require("../../assets/icons/circle.png"),
+  question: require("../../assets/icons/question.png"),
+  down: require("../../assets/icons/down.png"),
 }
 
 const $imageStyleBase: ImageStyle = {

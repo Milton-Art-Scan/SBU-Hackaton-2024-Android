@@ -1,7 +1,6 @@
 import App from "./app/app"
-import React from "react"
+import React, { useEffect } from "react"
 import * as SplashScreen from "expo-splash-screen"
-import { Camera } from "expo-camera"
 
 SplashScreen.preventAutoHideAsync()
 

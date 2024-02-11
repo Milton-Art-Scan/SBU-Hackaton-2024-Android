@@ -39,9 +39,27 @@ export const CameraScreen: FC<CameraScreenProps> = observer(function CameraScree
           <Icon
             icon="circle"
             size={85}
+            style={{
+                marginBottom: 15,
+            }}
             onPress={() => {
                 cameraRef.current?.takePictureAsync({ onPictureSaved: (photo) => {
                     console.log(photo)
+                    navigation.navigate("Description", {
+                        title: "The Mona Lisa",
+                        image: photo.uri,
+                        author: "Leonardo Di Vinci",
+                        description: "Some painting"
+                    })
+                    // fetch(, {
+                    //     method: "POST",
+                    //     headers: {
+                    //         "Content-Type": "application/json",
+                    //     },
+                    //     body: JSON.stringify({
+                    //         image: photo.uri,
+                    //     }),
+                    // })
                 }})
             }} 
           />

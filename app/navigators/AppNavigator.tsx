@@ -102,6 +102,16 @@ const App = observer(function AppStack() {
             ),
           }}
         />
+        <Tab.Screen
+          name="Milton"
+          component={Screens.TutorialScreen}
+          options={{
+            tabBarLabel: "Milton",
+            tabBarIcon: ({ focused }) => (
+              <Icon icon="question" color={focused ? colors.tint : undefined} size={25} />
+            ),
+          }}
+        />
       </>
       {/** 🔥 Your screens go here */}
       {/* IGNITE_GENERATOR_ANCHOR_APP_STACK_SCREENS */}
