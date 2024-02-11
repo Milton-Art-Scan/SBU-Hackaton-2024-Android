@@ -29,17 +29,19 @@ export const DescriptionScreen: FC<DescriptionScreenProps> = observer(function D
         }
     })
 
+    // Default no picture taken render
     if (!route.params.description) {
         return (
             <Screen preset="fixed" style={{ justifyContent: "center", alignItems: "center", paddingHorizontal: 10 }}>
                 <Text preset="heading" style={{ textAlign: "center" }}>
-                    Art details will appear here. Take a picture first.
+                    No Picture Taken
                 </Text>
                 <Button title="Take Picture" onPress={() => navigation.navigate("Scan")} text="Take a Picture" />
             </Screen>
         )
     }
-    console.log(route.params)
+    
+    // Picture taken render
     return (
         <Screen preset="scroll" safeAreaEdges={["top"]} style={{ marginTop: 50, paddingHorizontal: 10}}>
             <Text preset="heading" style={{ textAlign: "center" }}>
@@ -51,7 +53,7 @@ export const DescriptionScreen: FC<DescriptionScreenProps> = observer(function D
             <AutoImage
                 source={{ uri: route.params?.image }}
                 maxWidth={300}
-                style={{ alignSelf: "center", marginVertical: 10 }}
+                style={{ alignSelf: "center", marginVertical: 10, borderRadius: 10 }}
             />
             <Icon icon="volumeUp" size={30} onPress={speak} style={{ alignSelf: "center" }} />
             <Text preset="default" style={{ textAlign: "center", marginBottom: 40 }}>

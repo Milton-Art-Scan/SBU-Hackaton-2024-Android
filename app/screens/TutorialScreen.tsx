@@ -14,7 +14,7 @@ interface TutorialScreenProps extends AppStackScreenProps<"CameraScreen"> {}
  
 export const TutorialScreen: FC<TutorialScreenProps> = observer(function TutorialScreen(_props) {
     return (
-        <Screen preset="scroll"  safeAreaEdges={["top"]} style={{ paddingVertical: 50, paddingHorizontal: 10 }}>
+        <Screen preset="scroll"  safeAreaEdges={["top"]} style={{ paddingVertical: 50, paddingHorizontal: 25 }}>
             <Text preset="heading" style={{ textAlign: "center", fontSize: 45,paddingTop: 50 }}>
                 Milton
             </Text>
