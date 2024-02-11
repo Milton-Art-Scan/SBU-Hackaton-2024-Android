@@ -1,6 +1,8 @@
 # Milton: Scan Art for Info. A Platform for Artist.
 
 Named after 17th century poet John Milton, Milton is an app that helps you learn about art. Much of Miltons's work was written in completely in the dark, as he lost his sight in his 40s. Yet in his blindness, his work grew more vivid and imaginative. His magnum opus, Paradise Lost, is a testament to the power of art to transcend the physical world. Milton is designed to help you experience art in a new way, by providing audio descriptions of art pieces. All you need to do is scan a piece of art, and Milton will provide you with information about the art and an audio description if desired.
+
+
 ![image](https://github.com/lai-kevin/SBU-Hackaton-2024-Android/assets/96455410/39413c84-0a0f-4210-afe2-423bbb2a694b)
 ![image](https://github.com/lai-kevin/SBU-Hackaton-2024-Android/assets/96455410/95034394-bc12-4b2f-b142-5b960afa3b57)
 ![image](https://github.com/lai-kevin/SBU-Hackaton-2024-Android/assets/96455410/7f88723f-0b82-4ec1-bd9b-7cb2b5986394)
